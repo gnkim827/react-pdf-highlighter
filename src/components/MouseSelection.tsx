@@ -82,13 +82,16 @@ class MouseSelection extends Component<Props, State> {
     let realContainerBoundingRect: any = [];
 
     const containerCoords = (pageX: number, pageY: number) => {
+      if (!containerBoundingRect) {
         containerBoundingRect = container.getBoundingClientRect();
         realContainerBoundingRect.left = containerBoundingRect.left;
         realContainerBoundingRect.top = containerBoundingRect.top;
-        const scrollTop = document?.getElementById('element-to-print')?.scrollTop
-        if (scrollTop && scrollTop > 0) {
-          realContainerBoundingRect.top += scrollTop;
+
+        if (window.scrollY > 0) {
+          realContainerBoundingRect.top += window.scrollY;
+          realContainerBoundingRect.left += window.scrollX;
         }
+      }
 
       return {
         x: pageX - realContainerBoundingRect.left + container.scrollLeft,

@@ -45,9 +45,8 @@ class MouseSelection extends Component {
             containerBoundingRect = container.getBoundingClientRect();
             realContainerBoundingRect.left = containerBoundingRect.left;
             realContainerBoundingRect.top = containerBoundingRect.top;
-            if (window.scrollY > 0 || window.scrollX > 0) {
+            if (window.scrollY > 0) {
                 realContainerBoundingRect.top += window.scrollY;
-                realContainerBoundingRect.left += window.scrollX;
             }
             return {
                 x: pageX - realContainerBoundingRect.left + container.scrollLeft,

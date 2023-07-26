@@ -86,9 +86,8 @@ class MouseSelection extends Component<Props, State> {
         realContainerBoundingRect.left = containerBoundingRect.left;
         realContainerBoundingRect.top = containerBoundingRect.top;
 
-        if (window.scrollY > 0 || window.scrollX > 0) {
+        if (window.scrollY > 0) {
           realContainerBoundingRect.top += window.scrollY;
-          realContainerBoundingRect.left += window.scrollX;
       }
 
       return {

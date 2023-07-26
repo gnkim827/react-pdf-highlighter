@@ -42,14 +42,12 @@ class MouseSelection extends Component {
         let containerBoundingRect = null;
         let realContainerBoundingRect = [];
         const containerCoords = (pageX, pageY) => {
-            if (!containerBoundingRect) {
-                containerBoundingRect = container.getBoundingClientRect();
-                realContainerBoundingRect.left = containerBoundingRect.left;
-                realContainerBoundingRect.top = containerBoundingRect.top;
-                if (window.scrollY > 0) {
-                    realContainerBoundingRect.top += window.scrollY;
-                    realContainerBoundingRect.left += window.scrollX;
-                }
+            containerBoundingRect = container.getBoundingClientRect();
+            realContainerBoundingRect.left = containerBoundingRect.left;
+            realContainerBoundingRect.top = containerBoundingRect.top;
+            if (window.scrollY > 0 || window.scrollX > 0) {
+                realContainerBoundingRect.top += window.scrollY;
+                realContainerBoundingRect.left += window.scrollX;
             }
             return {
                 x: pageX - realContainerBoundingRect.left + container.scrollLeft,
